@@ -24,6 +24,21 @@
 
     const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
 
+    const morePeople = [
+      { name: 'Dante', year: 1988 },
+      { name: 'Randall', year: 1987 },
+      { name: 'Bob', year: 1944 },
+      { name: 'Jay', year: 2016}
+    ];
+
+    const comments = [
+      { text: 'There was salt on the glass, BIG grains of salt', id: 293847 },
+      { text: 'A schooner is a sailboat', id: 189820 },
+      { text: 'Do ya like dogs?', id: 123900 },
+      { text: "I wasn't even supposed to be here today", id: 37 },
+      { text: 'Luminous beings we are, not this crude matter', id: 823423 }
+    ];
+
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
@@ -98,6 +113,58 @@
     }, {});
 
     console.log( transportation )
+
+    // Some and Every Checks
+    // Array.prototype.some() // is at least one person 19 or older?
+
+    // const isAdult = morePeople.some( function( person ) {
+    //   const currentYear = ( new Date() ).getFullYear();
+    //   if( currentYear - person.year >= 19 ) {
+    //     return true;
+    //   }
+    // });
+
+    const isAdult = morePeople.some( person => ( ( new Date() ).getFullYear() ) - person.year >= 19 );
+
+    console.log( {isAdult} );
+
+    // Array.prototype.every() // is everyone 19 or older?
+
+    // const allAdults = morePeople.every( function( person ) {
+    //   const currentYear = ( new Date() ).getFullYear();
+    //   if( currentYear - person.year >= 19 ) {
+    //     return true;
+    //   }
+    // });
+
+    const allAdults = morePeople.every( person => ( ( new Date() ).getFullYear() ) - person.year >= 19 );
+
+    console.log( {allAdults} );
+
+    // Array.prototype.find()
+    // Find is like filter, but instead returns just the one you are looking for
+    // find the comment with the ID of 823423
+
+    const comment = comments.find( comment => comment.id === 823423 );
+
+    console.log( comment );
+
+    // Array.prototype.findIndex()
+    // Find the comment with this ID
+
+    const commentIndex = comments.findIndex( comment => comment.id === 823423 );
+
+    console.log( commentIndex );
+
+    // delete the comment with the ID of 823423
+
+    const newComments = [
+      ...comments.slice( 0, commentIndex ),
+      ...comments.slice( commentIndex + 1 )
+    ];
+
+    console.table( comments );
+    console.table( newComments );
 
   </script>
 </body>
